@@ -1,0 +1,40 @@
+//async/await 
+//foo是个拥有异步特性的同步函数
+async function foo() {
+  console.log(1);
+}
+console.log(2);
+console.log(foo()); // Promise {<fulfilled>: undefined} 会隐式的返回promise
+//1
+//2
+
+//如果写return或者promise 会当成promise执行
+async function foo() {
+  console.log(1);
+  // return 3   当成已返回的期约
+  // return Promise.resolve(3)
+  // throw 3
+  // Promise.reject(3) 报错 Uncaught (in Promise): 3
+}
+foo.then(console.log)
+console.log(2);
+//1 2 3
+
+// await 使用关键字同yield 会暂停执行后面的代码 实现js执行线程 （等到await执行完毕后，消息队列才会推下个任务进入）
+// 当你在async 函数内使用promise.reject()时，等同于return 不执行异步后面的代码
+// 在使用await时，不对嵌套内函数执行异步任务
+
+// 如果要解决await 暂停实现下个任务
+function handletask(number) {
+  return number
+}
+async function foo() {
+  let a = handletask(1);
+  let b = handletask(2);
+  let c = handletask(3);
+  await a;
+  await b;
+  await c;
+}
+
+// 抛出错误的时候async的性能会优于promise

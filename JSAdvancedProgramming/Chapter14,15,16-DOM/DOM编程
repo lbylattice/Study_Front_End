@@ -1,0 +1,19 @@
+//通过外部文件加载是一个异步任务，并没有先后顺序
+
+// 动态脚本
+<script src="foo.js"></script>
+// 或
+let script = document.createElement("script")
+script.src = "foo.js"
+document.body.appendChild(script)
+
+//动态样式
+{/* <link rel="stylesheet" type="text/css" href="stle.css"> */}
+// 或
+let link = document.createElement("script")
+link.rel = "stylesheet"
+link.type = "text/css"
+link.href = "stle.css"
+let head = document.getElementsByClassName("head")[0]
+head.appendChild(link)
+

@@ -1,0 +1,71 @@
+setTimeout(() => { })//最开始的异步
+// 后面promise pending(待定) fuifilled(兑现) or resolve(解决) reject(拒绝)
+
+//pending返回undefined resolve(返回value) reject(返回error对象)
+//状态码200-299之间状态改为resolve(返回value) 其他返回reject(返回error对象)
+
+//直接调用状态可直接切换状态 且状态不可逆
+let p1 = new Promise((resolve, reject) => resolve())
+
+//promise会比setTimeout先执行的原因是 promise执行器(Promise里面包含的函数)是同步执行的
+setTimeout(() => console.log(2),0)
+new Promise(() => { console.log(1) })
+
+
+//如果promise卡在pending 可在内部执行settimeout 返回下个状态
+new Promise((resolve) => {
+  //resolve返回命名参数的第一个元素  
+  //Promise.resolve() undefined  reject返回: Promise<rejected>: Promise <resolved>
+  //Promise.resolve(1) 1    同reject
+  //Promise.resolve(4,5,6) 4    同reject
+  setTimeout(() => { resolve }, 10000)
+})
+
+let p2 = new Promise(() => { })
+console.log(p2);  //undefined
+
+//如果直接返回Error 则也会报错
+let p3 = Promise.resolve(new Error('error'))  //直接跑出错误会导致reject
+console.log(p3);  //Error: error
+
+try {
+  // throw(new Error("error")); //Error: error   //同步
+  // Promise.reject(new Error('error'); //Uncaght (in Promise) Error: error  //异步 无法被catch捕获
+} catch (error) {
+  console.log(error);
+}
+
+// Promise.prototype.then 返回上个Promise返回的值 onResolved onRejected
+let p4 = new Promise((resolve, reject) => resolve(111)).then((res) => {
+  console.log(res);   //111
+})
+
+
+
+// Promise.prototype.catch 返回onRejected
+
+// Promise.prototype.finally 本质同.then 与状态无关，无法接受参数 属于最后的处理函数
+
+//非重入期约函数 then虽然会先进入消息队列 但是要等到后面的同步任务执行完成后才执行.then里的函数    同catch finally
+p1.then(() => {
+  console.log("1");
+})
+console.log("2");
+  //先执行2 再执行1
+
+//Promise.all 接受一个数组(按顺序异步执行) 返回所有期约值的一个数组 
+Promise.all([p1,p2,p3]).finally(()=> {
+  console.log(111);
+  //111 需要等所有promise都执行且返回为resolved才执行,一个为reject则所有都为reject
+})
+Promise.all([1,2,3]).then((value)=> {
+  console.log(value);  //[1,2,3]
+})
+
+//Promise.race 接受一个数组 
+Promise.race([1,2,3]).then((value)=> {
+  console.log(value);  // 1 || 2 || 3      只有一个返回值 先执行完毕的返回(不管resolve还是reject)
+})
+
+
+

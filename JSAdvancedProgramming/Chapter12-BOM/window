@@ -1,0 +1,20 @@
+// window是DOM的核心 他有两重身份 
+//1.ECMAScript的Global的对象   2.浏览器窗口中的JS接口
+
+// global作用域
+// var关键字会把声明的变量映射到window中 而let不会
+var age = 18;  //18
+let age = 18;  //undefined
+console.log(age);
+
+// 导航与打开新窗口
+// <a href="https://www.baidu.com"/>  = window.open("https://www.baidu.com")
+
+// 定时器 js虽然是单线程的，但是他会接受定时器为异步任务.
+// js为了调用异步任务，他维护了一个消息队列，任务会按照添加的先后顺序执行，如果消息队列为空，则执行后面的代码
+// seTtimeout setInterval
+let timer = setTimeout(function() {
+  console.log(1);
+},1000)
+//清除定时器
+clearTimeout(timer)

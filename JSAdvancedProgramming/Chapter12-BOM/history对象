@@ -1,0 +1,6 @@
+// history对象为用户的导航历史记录
+window.go()  //跳转去xxx
+window.back()  //返回上一次
+window.forward()  //返回下一次
+window.length  //跳转次数 如果为1 则是起始页
+

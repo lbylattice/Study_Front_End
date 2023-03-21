@@ -1,0 +1,1 @@
+// location对象 既是window的属性也是document属性 他把URL解析为能够识别的属性。
