@@ -21,3 +21,4 @@ git status -s  or git status --short
 
 
 忽略文件 .gitignore文件
+见外部 .gitignore文件
