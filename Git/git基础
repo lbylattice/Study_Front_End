@@ -22,3 +22,12 @@ git status -s  or git status --short
 
 忽略文件 .gitignore文件
 见外部 .gitignore文件
+
+
+
+查看差异  命令 git diff
+1.首先你得有修改的文件a在暂存区
+2.在文件a上继续修改但不跟踪文件a
+3.使用git diff比较差异
+
+命令 git diff --staged    比较暂存区的文件与最后一次提交文件的差异
