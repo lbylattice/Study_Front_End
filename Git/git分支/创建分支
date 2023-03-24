@@ -1,1 +1,40 @@
 创建新分支 命令(git branch xxxx)
+这会在当前所在的提交对象上创建一个指针
+
+
+
+切换分支 命令(git checkout xxxx)
+
+
+
+两个指向相同提交历史的分支
+Git 又是怎么知道当前在哪一个分支上呢？很简单，它有一个名为 HEAD 的特殊指针。 
+它是一个指针，指向当前所在的本地分支(译注：将 HEAD 想象为当前分支的别名)。 
+
+
+
+新建切换分支 命令(git checkout -b xxx)
+差分如下:
+git branch iss53
+git checkout iss53
+
+
+
+删除分支 命令(git branch -d xxx)
+
+
+
+
+任何因包含合并冲突而有待解决的文件，都会以未合并状态标识出来。 
+Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。
+使用git status查看状态
+例:
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+这表示HEAD所指示的版本(也就是你当前分支所在的位置)在这个区段的上半部分(======= 的上半部分),
+而远程分支所指示的版本在 ======= 的下半部分。 为了解决冲突，你必须选择使用由 ======= 分割的两部分中的一个，或者你也可以自行合并这些内容。
