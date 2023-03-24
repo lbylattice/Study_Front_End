@@ -1,0 +1,33 @@
+git remote   克隆的仓库服务器的默认名字
+git remote -v   克隆的仓库服务器的默认名字和对应的URL
+git remote show <remote>  查看某个远程仓库
+
+
+
+添加远程仓库  命令 (git remote add <shortname> <url>)
+例: 
+git remote add pb https://github.com/paulboone/ticgit
+git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+pb	https://github.com/paulboone/ticgit (fetch)
+pb	https://github.com/paulboone/ticgit (push)
+
+
+
+从远程仓库中抓取与拉取
+git fetch <remote>
+这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用。
+如果你的当前分支设置了跟踪远程分支，那么可以用 git pull 命令来自动抓取后合并该远程分支到当前分支。
+
+
+
+推送到远程仓库   git push <remote> <branch>
+当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令生效。 
+当你和其他人在同一时间克隆，他们先推送到上游然后你再推送到上游，你的推送就会毫无疑问地被拒绝。 你必须先抓取他们的工作并将其合并进你的工作后才能推送。
+
+
+
+远程仓库的重命名与移除
+git remote rename <old remote>  <new remote>  重命名
+$ git remote remove <remote>  移除

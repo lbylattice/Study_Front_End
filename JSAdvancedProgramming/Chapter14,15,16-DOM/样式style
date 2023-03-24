@@ -1,0 +1,12 @@
+style属性在JS中都有对应的属性，是CSSStyleDeclaration类型的实例。
+要在JS中使用style属性如果有连字符的情况下必须要用驼峰。
+例:
+let div = document.getElementById("div");
+div.style.backgroundColor = "red";
+获取div的style属性值如下:
+例:
+let div = document.getElementById("div");
+div.style.backgroundColor = "red";
+let computedStyle = document.defaultView.getComputedStyle("div",null)
+console.log(computedStyle.backgroundColor)   
+//red
