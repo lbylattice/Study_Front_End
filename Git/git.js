@@ -20,4 +20,6 @@ git config --list
 user.name "John Doe"
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
+
+git文档https://git-scm.com/book/zh/v2
 */

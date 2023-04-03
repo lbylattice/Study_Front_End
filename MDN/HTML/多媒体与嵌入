@@ -1,0 +1,129 @@
+
+像<img>和<video>这样的元素有时被称之为替换元素,因为这样的元素的内容和尺寸由外部资源(像是一个图片或视频文件)所定义,而不是元素自身。
+图片
+使用 HTML5 的 <figure> 和 <figcaption> 元素,它正是为此而被创造出来的：为图片提供一个语义容器,在标题和图片之间建立清晰的关联。
+例:
+<figure>
+  <img 
+    src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"
+    alt="一只恐龙头部和躯干的骨架,它有一个巨大的头,长着锋利的牙齿。"
+    srcset="elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w"
+    sizes="(max-width: 600px) 480px,800px"
+    width="400"
+    height="341">
+  <figcaption>曼彻斯特大学博物馆展出的一只霸王龙的化石</figcaption>
+</figure>
+
+属性
+srcset定义了浏览器可选择的图片设置以及每个图片的大小,每张图片信息的设置和前一个用逗号隔开,每个设置要写：
+一个文件名(elva-fairy-480w.jpg)
+一个空格
+图片的固有宽度(以像素为单位)(480w)。注意,这里使用宽度描述符 w,而非你可能期望的 px。
+图片的固有宽度 (en-US)是它的真实大小,可以通过检查你电脑上的图片文件找到(例如,在 Mac 上,你可以在 Finder 上选择这个图片,然后按 Cmd + I 来显示信息)。
+
+sizes 定义了一组媒体条件(例如屏幕宽度)并且指明当某些媒体条件为真时,什么样的图片尺寸是最佳选择——这就是我们之前提到的提示。上面的示例中,在每个逗号之前,我们写：
+一个媒体条件((max-width:600px))这里我们说一个媒体条件描述了一种屏幕可能处于的状态。上面示例中,我们说“当视口的宽度小于等于 600px 时”。
+一个空格
+当媒体条件为真时,图像将填充的槽的宽度(480px)
+
+
+视频
+<video src="rabbit320.webm" controls>
+
+将 src 属性从 <video> 标签中移除,转而将它放在几个单独的标签 <source> 当中。
+浏览器将会检查 <source> 标签,并且播放第一个与其自身 codec 相匹配的媒体。
+视频应当包括 WebM 和 MP4 两种格式,这两种在目前已经足够支持大多数平台和浏览器。
+每个 <source> 标签页含有一个 type 属性,这个属性是可选的,
+但是建议你添加上这个属性 — 它包含了视频文件的 MIME types ,同时浏览器也会通过检查这个属性来迅速的跳过那些不支持的格式。
+如果你没有添加 type 属性,浏览器会尝试加载每一个文件,直到找到一个能正确播放的格式,这样会消耗掉大量的时间和资源。
+例:
+<video controls>
+  <source src="rabbit320.mp4" type="video/mp4">
+  <source src="rabbit320.webm" type="video/webm">
+  <p>你的浏览器不支持 HTML5 视频。可点击<a href="rabbit320.mp4">此链接</a>观看</p>
+</video>
+
+属性
+width 和 height
+你可以用属性控制视频的尺寸,也可以用 CSS 来控制视频尺寸。
+无论使用哪种方式,视频都会保持它原始的长宽比 — 也叫做纵横比。
+如果你设置的尺寸没有保持视频原始长宽比,那么视频边框将会拉伸,而未被视频内容填充的部分,将会显示默认的背景颜色。
+
+autoplay
+这个属性会使音频和视频内容立即播放,即使页面的其他部分还没有加载完全。
+
+loop
+这个属性可以让音频或者视频文件循环播放。
+
+muted
+这个属性会导致媒体播放时,默认关闭声音。
+
+poster
+这个属性指向了一个图像的 URL,这个图像会在视频播放前显示。通常用于粗略的预览或者广告。
+
+preload
+这个属性被用来缓冲较大的文件,有 3 个值可选：
+"none" ：不缓冲
+"auto" ：页面加载后缓存媒体文件
+"metadata" ：仅缓冲文件的元数据
+
+
+
+音频
+<audio> 标签与 <video> 标签的使用方式几乎完全相同,audiom没有width和height属性
+
+
+
+重新播放媒体  可以使用load()
+例:
+const mediaElem = document.getElementById("my-media-element");
+mediaElem.load();
+
+
+
+音轨增删事件
+你可以监控媒体元素中的音频轨道,当音轨被添加或删除时,你可以通过监听相关事件来侦测到。
+具体来说,通过监听 AudioTrackList 对象的 addtrack 事件(即 HTMLMediaElement.audioTracks 对象),你可以及时对音轨的增加做出响应。
+例:
+const mediaElem = document.querySelector("video");
+mediaElem.audioTracks.onaddtrack = function(event) {
+  audioTrackAdded(event.track);
+}
+
+
+
+iframe
+<iframe> 元素旨在允许你将其他 Web 文档嵌入到当前文档中。
+这很适合将第三方内容嵌入你的网站,你可能无法直接控制,也不希望实现自己的版本——例如来自在线视频提供商的视频,Disqus 等评论系统,在线地图提供商,广告横幅等。
+你通过本课程使用的实时可编辑示例就是使用 <iframe> 实现的。
+<iframe src="https://www.baidu.com"
+        width="100%" height="500" frameborder="0"
+        allowfullscreen sandbox>
+  <p> <a href="https://www.baidu.com">
+   goto 百度
+  </a> </p>
+</iframe>
+
+属性
+allowfullscreen
+如果设置,<iframe>则可以通过全屏 API 设置为全屏模式(稍微超出本文的范围)。
+
+frameborder
+如果设置为 1,则会告诉浏览器在此框架和其他框架之间绘制边框,这是默认行为。0 删除边框。
+不推荐这样设置,因为在 CSS 中可以更好地实现相同的效果。border: none;
+
+src
+该属性与 <video> / 元素表示文档中的图像。<img>一样包含指向要嵌入文档的 URL 路径。
+
+width 和 height
+这些属性指定你想要的 iframe 的宽度和高度。
+
+
+使用 HTTPS 通讯协议
+HTTPS 是 HTTP 的加密版本。你应该尽可能使用 HTTPS 为你的网站提供服务：
+
+HTTPS 减少了远程内容在传输过程中被篡改的机会,
+HTTPS 防止嵌入式内容访问你的父文档中的内容,反之亦然。
+http：超文本传输协议,明文传输,信息不安全。用的是80端口,工作在应用层
+https：安全套接字超文本传输协议,有ssl/tsl证书,信息安全。用的443端口,工作在传输层
+

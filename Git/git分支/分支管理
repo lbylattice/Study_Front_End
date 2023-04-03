@@ -1,0 +1,12 @@
+查看分支 命令(git branch)
+查看分支最后一次提交记录  命令(git branch -v)
+
+删除分支  命令(git branch -d xxx)
+
+
+
+查看哪些分支已经合并到当前分支
+git branch --merged
+
+查看哪些分支没有合并到当前分支
+git branch --no-merged

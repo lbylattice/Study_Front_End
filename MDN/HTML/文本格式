@@ -1,0 +1,44 @@
+块引用
+如果一个块级内容（一个段落、多个段落、一个列表等）从其他地方被引用，你应该把它用 <blockquote> 元素包裹起来表示，
+并且在 cite 属性里用 URL 来指向引用的资源。例如，下面的示例代码就是引用的 MDN 的 <blockquote> 元素页面：
+例:
+<blockquote
+  cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote">
+  <p>
+    The <strong>HTML <code>&lt;blockquote&gt;</code> Element</strong> (or
+    <em>HTML Block Quotation Element</em>) indicates that the enclosed text is
+    an extended quotation.
+  </p>
+</blockquote>
+
+
+ <q>行内元素， <q> 页面的引用
+ 例:
+ <q cite="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q">intended
+for short quotations that don't require paragraph breaks.</q>
+
+
+
+<abbr>——它常被用来包裹一个缩略语或缩写。这为用户代理提供了如何公布/显示内容的提示，同时告知所有用户该缩写的含义。
+title属性 提供缩写的解释
+例:
+<abbr title="超文本标记语言（Hyper text Markup Language）">HTML</abbr>
+
+
+
+上标和下标
+当你使用日期、化学方程式、和数学方程式时会偶尔使用上标和下标，以确保它们的正确含义。
+<sup>上标 和 <sub>下标 元素可以解决这样的问题。
+
+
+
+
+<code>：用于标记计算机通用代码。
+<pre>：用于保留空白字符（通常用于代码块）——如果文本中使用了缩进或多余的空白，浏览器将忽略它，你将不会在呈现的页面上看到它。
+但是，如果你将文本包含在 <pre></pre> 标签中，那么空白将会以与你在文本编辑器中看到的相同的方式渲染出来。
+<var>：用于标记具体变量名。
+<kbd>：用于标记输入电脑的键盘（或其他类型）输入。
+<samp>：用于标记计算机程序的输出。
+
+
+
