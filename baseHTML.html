@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .first {
+      border: 5px solid black;
+    }
+
+    div[class~="box2"] {
+      padding: 10px;
+      width: calc(90% - 30px);
+      background-color: rebeccapurple;
+      color: white;
+    }
+
+    div[data-color|="yellow"] {
+      padding: 10px;
+      width: calc(90% - 30px);
+      background-color: yellow;
+      color: white;
+    }
+
+    .box1 {
+      padding: 10px;
+      width: calc(90% - 30px);
+      background-color: rebeccapurple;
+      color: white;
+    }
+
+    .second+.third {
+      width: 100% !important;
+      height: 50px;
+      background-color: aquamarine;
+    }
+
+    .box4,
+    .box5{
+      border: 10px solid black;
+      margin: 5px;
+      padding: 5px;
+      width: 100px;
+      height: 100px;
+      background-color: cadetblue;
+    }
+    .box5 {
+      box-sizing: border-box;
+    }
+
+
+    /* 最小值大于550px时，使用以下媒体查询 */
+    @media (min-width: 550px) {
+      body {
+        background-color: pink;
+      }
+    }
+
+    ul>li {
+      border: 5px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>hello</h1>
+  <div class="first">
+    <div class="box1">The inner box is 90% - 30px.</div>
+    <div class="box2">The inner box is 90% - 30px.</div>
+    <div class="box3" data-color="yellow">The inner box is 90% - 30px.</div>
+  </div>
+  <div class="second">
+    <ul>
+      <li>Unordered item</li>
+      <li>Unordered item
+        <ol>
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+  <div class="third" style="width:50%">
+  </div>
+  <div class="box4"></div>
+  <div class="box5"></div>
+</body>
+
+</html>

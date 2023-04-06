@@ -1,0 +1,68 @@
+最简单的媒体查询：
+
+@media media-type and (media-feature-rule) {
+  /* CSS rules go here */
+}
+
+它由以下部分组成：
+一个媒体类型，告诉浏览器这段代码是用在什么类型的媒体上的（例如印刷品或者屏幕）；
+一个媒体表达式，是一个被包含的 CSS 生效所需的规则或者测试；
+一组 CSS 规则，会在测试通过且媒体类型正确的时候应用。
+
+媒体类型
+你可以指定的媒体类型为：
+all
+print
+screen
+speech
+媒体类型是可选的，如果你没有在媒体查询中指示一个媒体类型的话，那么媒体查询默认会设为用于全部媒体类型。
+
+min-width、max-width和width媒体特征，在视口宽度大于或者小于某个大小——或者是恰好处于某个大小——的时候，应用 CSS。
+width（和height）媒体特征可以以数值范围使用，于是就有了min-或者max-的前缀，指示所给的值是最小值还是最大值。
+
+
+朝向
+一个受到良好支持的媒体特征是orientation，我们可以用它测得竖放（portrait mode）和横放（landscape mode）模式。
+要在设备处于横向的时候改变 body 文本颜色的话，可使用下面的媒体查询。
+@media (orientation: landscape) {
+    body {
+        color: rebeccapurple;
+    }
+}
+
+hover媒体特征被引入了进来。这种特征意味着你可以测试用户是否能在一个元素上悬浮，这也基本就是说他们正在使用某种指点设备，因为触摸屏和键盘导航是没法实现悬浮的。
+@media (hover: hover) {
+    body {
+        color: rebeccapurple;
+    }
+}
+
+pointer媒体特征。它可取三个值：
+none  none值意味着，用户没有指点设备，也许是他们正只使用键盘导航，或者是语音命令。
+fine  fine指针是类似于鼠标或者触控板的东西，它让用户可以精确指向一片小区域。
+coarse  coarse指针是你在触摸屏上的手指。
+
+
+媒体查询中的“与”逻辑
+为了混合媒体特征，你可以以与在上面使用and很相同的方式，用and来混合媒体类型和特征。
+@media screen and (min-width: 400px) and (orientation: landscape) {
+    body {
+        color: blue;
+    }
+}
+
+媒体查询中的“或”逻辑
+如果你有一组查询，且要其中的任何一个都可以匹配的话，那么你可以使用逗号分开这些查询。
+@media screen and (min-width: 400px), screen and (orientation: landscape) {
+    body {
+        color: blue;
+    }
+}
+
+媒体查询中的“非”逻辑
+你可以用not操作符让整个媒体查询失效。这就直接反转了整个媒体查询的含义。
+@media not all and (orientation: landscape) {
+    body {
+        color: blue;
+    }
+}

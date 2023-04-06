@@ -1,0 +1,162 @@
+正常布局流
+
+
+
+弹性盒子   display:flex
+当元素表现为 flex 框时，它们沿着两个轴来布局：
+在从左到右的语言中，三个 flex 项并排放置在 flex 容器中。主轴——弹性容器布置 flex 方向上的轴——是水平的。
+主轴的两端是开始端和结束端，分别位于左侧和右侧。交叉轴是垂直的；垂直于主轴。交叉轴的开始端和结束端分别位于顶部和底部。
+flex 项沿着主轴排列，在这种情况下，宽度称为主轴尺寸，flex 项沿交叉轴排列，在这种情况下，高度称为交叉尺寸。
+主轴（main axis）:是沿着 flex 元素放置的方向延伸的轴（比如页面上的横向的行、纵向的列）。该轴的开始和结束被称为 main start 和 main end。
+交叉轴（cross axis）:是垂直于 flex 元素放置方向的轴。该轴的开始和结束被称为 cross start 和 cross end。
+设置了 display: flex 的父元素被称之为 flex 容器（flex container）。
+在 flex 容器中表现为弹性的盒子的元素被称之为 flex 项（flex item）
+
+属性：
+
+flex-direction 它可以指定主轴的方向（弹性盒子子类放置的地方）——它默认值是 row
+
+flex-wrap: wrap  设置换行
+
+flex-flow 缩写
+到这里，应当注意到存在着 flex-direction 和 flex-wrap——的缩写 flex-flow。比如，你可以将
+flex-direction: row;
+flex-wrap: wrap;
+Copy to Clipboard
+替换为
+flex-flow: row wrap;
+
+flex: 1;表示每个 flex 项沿主轴的可用空间大小。设置元素的 flex 值为 1，这表示每个元素占用空间都是相等的，占用的空间是在设置 padding 和 margin 之后剩余的空间。
+
+align-items 控制 flex 项在交叉轴上的位置。
+默认的值是 stretch，其会使所有 flex 项沿着交叉轴的方向拉伸以填充父容器。
+如果父容器在交叉轴方向上没有固定宽度（即高度），则所有 flex 项将变得与最长的 flex 项一样长（即高度保持一致）。我们的第一个例子在默认情况下得到相等的高度的列的原因。
+在上面规则中我们使用的 center 值会使这些项保持其原有的高度，但是会在交叉轴居中。这就是那些按钮垂直居中的原因。
+你也可以设置诸如 flex-start 或 flex-end 这样使 flex 项在交叉轴的开始或结束处对齐所有的值。
+
+justify-content 控制 flex 项在主轴上的位置。
+默认值是 flex-start，这会使所有 flex 项都位于主轴的开始处。
+你也可以用 flex-end 来让 flex 项到结尾处。
+center 在 justify-content 里也是可用的，可以让 flex 项在主轴居中。
+而我们上面用到的值 space-around 是很有用的——它会使所有 flex 项沿着主轴均匀地分布，在任意一端都会留有一点空间。
+还有一个值是 space-between，它和 space-around 非常相似，只是它不会在两端留下任何空间。
+
+order: 1  flex 项排序，设置元素位置
+所有 flex 项默认的 order 值是 0。
+order 值大的 flex 项比 order 值小的在显示顺序中更靠后。
+相同 order 值的 flex 项按源顺序显示。所以假如你有四个元素，其 order 值分别是 2，1，1 和 0，那么它们的显示顺序就分别是第四，第二，第三，和第一。
+第三个元素显示在第二个后面是因为它们的 order 值一样，且第三个元素在源顺序中排在第二个后面。
+你也可以给 order 设置负值使它们比值为 0 的元素排得更前面。
+
+
+
+
+Grid 布局   display: grid
+  div{
+    display: grid;
+
+    grid-template-columns: 200px 200px 200px; 
+    设置3个columns的宽度 或者使用 grid-template-columns: 2fr 1fr 1fr; 分成4份 第一列占两份
+
+    grid-gap: 20px;  设置网格间隙为20px  或者使用gap: 20px;
+
+    grid-template-columns: repeat(3, 1fr);
+    第一个传入 repeat 函数的值（3）表明了后续列宽的配置要重复多少次，而第二个值（1fr）表示需要重复的构建配置，这个配置可以具有多个长度设定。
+    例如repeat(2, 2fr 1fr)，如果你仍然不明白，可以实际测试一下效果，这相当于填入了 2fr 1fr 2fr 1fr。
+
+    grid-auto-rows: 100px; 设置网格的宽 grid-auto-rows: minmax(100px, auto); 设置最小值100px，大于100px则自动调整
+
+    grid-column: 1;设置高度;
+
+    grid-row: 1;设置宽度;
+
+    grid-template-areas:
+    "header header"
+    "sidebar content"
+    属性放置元素
+  }
+
+  header {
+    grid-area: header;
+  }
+  article {
+    grid-area: content;
+  }
+  aside {
+    grid-area: sidebar;
+  }
+
+
+
+
+
+浮动布局   display: float
+float: left; 左浮动
+
+清除浮动 clear: left; 写在其他元素，清除浮动对其的影响
+left：停止任何活动的左浮动
+right：停止任何活动的右浮动
+both：停止任何活动的左右浮动
+
+
+
+
+定位技术  position
+如果所有的父元素都没有显式地定义 position 属性，那么所有的父元素默认情况下 position 属性都是 static。
+结果，绝对定位元素会被包含在初始块容器中。这个初始块容器有着和浏览器视口一样的尺寸，并且<html>元素也被包含在这个容器里面。
+简单来说，绝对定位元素会被放在<html>元素的外面，并且根据浏览器视口来定位。
+
+静态定位
+静态定位是每个元素获取的默认值——它只是意味着“将元素放入它在文档布局流中的正常位置 ——这里没有什么特别的。
+position: static;
+
+相对定位
+相对定位是位置类型。它与静态定位非常相似，占据在正常的文档流中，除了你仍然可以修改它的最终位置，包括让它与页面上的其他元素重叠。让我们继续并更新代码中的 position 属性：
+position: relative;
+
+绝对定位  
+绝对定位的元素不再存在于正常文档布局流中。相反，它坐在它自己的层独立于一切。这是非常有用的：这意味着我们可以创建不干扰页面上其他元素的位置的隔离的 UI 功能。
+position: absolute;
+
+固定定位
+这与绝对定位的工作方式完全相同，只有一个主要区别：绝对定位将元素固定在相对于其位置最近的祖先。
+而固定定位固定元素则是相对于浏览器视口本身。这意味着你可以创建固定的有用的 UI 项目。
+
+粘性定位
+position: sticky
+它基本上是相对位置和固定位置的混合体，它允许被定位的元素表现得像相对定位一样，直到它滚动到某个阈值点（例如，从视口顶部起 10 像素）为止，此后它就变得固定了。
+例如，它可用于使导航栏随页面滚动直到特定点，然后粘贴在页面顶部。
+
+滚动索引
+position: sticky
+滚动到某个位置，然后定住
+
+top、bottom、left 和 right
+同反方向位移
+
+z-index  更改堆叠顺序，只接受数字
+
+
+
+
+表格布局
+
+
+
+
+多列布局
+ {
+   column-count: 3; 分成3列
+   column-width: 200px;列宽
+   column-gap: 20px;  列边距
+   column-rule: 4px dotted rgb(79, 185, 227);  列间隙样式
+ }
+
+
+视口元标签
+<meta name="viewport" content="width=device-width,initial-scale=1">
+initial-scale：设定了页面的初始缩放，我们设定为 1。
+height：特别为视口设定一个高度。
+minimum-scale：设定最小缩放级别。
+maximum-scale：设定最大缩放级别。
+user-scalable：如果设为no的话阻止缩放。

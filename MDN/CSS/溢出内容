@@ -1,0 +1,6 @@
+overflow属性是你控制一个元素溢出的方式，它告诉浏览器你想怎样处理溢出。overflow的默认值为visible，这就是我们的内容溢出的时候，我们在默认情况下看到它们的原因。
+
+overflow: hidden    内容溢出的时候把它裁剪掉
+overflow: scroll    那么你的浏览器总会显示滚动条，可以查看内容溢出的部分
+overflow-y: scroll   滚动条在y轴显示
+overflow-x: scroll   滚动条在x轴显示
